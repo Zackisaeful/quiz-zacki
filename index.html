@@ -28,8 +28,8 @@
               <img src="./images/example-product/indomie.jpg" alt="" class="produk-img" />
             </div>
             <div class="content">
-              <p id="Paket">Paket Hemat 1</p>
-              <p>
+              <p id="paket">Paket Hemat 1</p>
+              <p id="name">
                 Nasi Timbel + Ayam (bakar/goreng) + Tahu & Tempe + Sambal +
                 Teh
               </p>
@@ -82,11 +82,17 @@
       let valueJumlah = document.getElementById("nojumlah").value;
       let total = ""
 
+      let nama = '' 
+      let deskripsi = ''
+
       tambah.addEventListener("click", () => {
         valueJumlah = eval(valueJumlah + 1);
         jumlah.innerHTML = `jumlah: ${valueJumlah}`;
         total = valueJumlah * 36000
         console.log(total)
+        deskripsi = document.getElementById("name").innerText
+        nama = document.getElementById("paket").innerText
+       
       });
 
       kurang.addEventListener("click", () => {
@@ -94,12 +100,17 @@
           valueJumlah = valueJumlah - 1;
           jumlah.innerHTML = `jumlah: ${valueJumlah}`;
         }
+        deskripsi = document.getElementById("name").innerText
+        nama = document.getElementById("paket").innerText
       });
+
       const pesan = () => {
         if (total == 0) {
           alert('pesanan anda kosong')
         } else {
           localStorage.setItem("total", total);
+          localStorage.setItem("nama", nama);
+          localStorage.setItem("pesanan", deskripsi);
           window.location.href = "order.html"
         }
       }

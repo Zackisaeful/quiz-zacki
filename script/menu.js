@@ -21,11 +21,11 @@ let pilihan = [
 
 const menuSection = document.querySelector(".menu-section");
 
-.map(() => {
-  menuSection.innerHTML += (.name, .desc, .price, .id);
+pilihan.map((anak) => {
+  menuSection.innerHTML += kartu(anak.name, anak.desc, anak.price, anak.id);
 });
 
-function kartu() {
+function kartu(name, description, price, id) {
   return `<!-- card -->
 	<div class="card">
 		<button class="kategori" aria-readonly="true">Paket</button>
@@ -39,15 +39,38 @@ function kartu() {
 				/>
 			</div>
 			<div class="content">
-				<p></p>
-				<p></p>
-				<p></p>
+				<p>${name}</p>
+				<p>${description}</p>
+				<p>${price}</p>
 				<div class="content2">
-					<button class="tambah" id="pesan{id}">pesan</button>
+					<button class="tambah" id="pesan-${id}">pesan</button>
 				</div>
 			</div>
 		</div>
 	</div>`;
 }
 
-.map(() => {});
+let orders = [];
+
+pilihan.map((anakff) => {
+  // anakff dari ibu pilihan
+  const pesan = document.getElementById(`pesan-${anakff.id}`);
+
+  pesan.addEventListener("click", (e) => {
+    e.preventDefault();
+    const jumlah = prompt("Pesan berapa?");
+
+    if (jumlah !== null) {
+      if (jumlah !== "") {
+        const total = anakff.price * jumlah;
+        localStorage.setItem("jumlah", jumlah);
+        localStorage.setItem("total", total);
+        localStorage.setItem("name", anakff.name);
+        localStorage.setItem("pesanan", anakff.desc);
+        window.location.href = "order.html";
+      } else {
+        alert("Anda harus memasukkan jumlah pesanan.");
+      }
+    }
+  });
+});
