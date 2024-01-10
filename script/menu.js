@@ -50,7 +50,6 @@ function kartu(name, description, price, id) {
 	</div>`;
 }
 
-let orders = [];
 
 pilihan.map((anakff) => {
   // anakff dari ibu pilihan
