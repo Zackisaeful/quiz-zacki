@@ -55,7 +55,7 @@ const bayar = () => {
         if (konfirmasi == true) {
           topup = prompt("masukan nomina pecahan 10000");
           if (topup % 10000 == 0) {
-            saldo_u + topup;
+            saldo_u = parseInt(saldo_u) + parseInt(topup);
           }
         }
       } else {
